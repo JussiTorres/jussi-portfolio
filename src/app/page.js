@@ -1,65 +1,76 @@
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Education from "./components/Education";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <main className="bg-neutral-950 text-white font-mono selection:bg-blue-500/30">
+
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden border-b border-gray-900">
+
+        {/* Background Grid */}
+        <div className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#444 1px, transparent 1px), linear-gradient(90deg, #444 1px, transparent 1px)',
+            backgroundSize: '30px 30px'
+          }}>
+        </div>
+
+        {/* Hero Content */}
+        <div className="z-10 text-center space-y-6 px-4 max-w-4xl"> {/* Adjusted space-y-6 for tighter feel */}
+
+          {/* --- Circular Profile Picture --- */}
+          <div className="pt-4 flex justify-center"> {/* Added some top padding */}
+            <div className="relative w-34 h-34 md:w-42 md:h-42 rounded-full overflow-hidden border-2 border-blue-600 opacity-70 hover:opacity-100 transition-opacity duration-300">
+              <Image
+                src="/ini.jpg"
+                alt="Jussi Torres Profile"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+          </div>
+
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-gray-200 to-red-600 animate-pulse">
+                  Jussi Torres
+              </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm text-gray-400 font-bold mt-2">
+            <span className="px-3 py-1 border border-gray-800 rounded bg-black/50 text-white">FULL_STACK_DEVELOPER</span>
+            <span className="text-gray-500">//</span>
+            <span className="px-3 py-1 border border-gray-800 rounded bg-black/50 text-blue-400">FULL_STACK_JAVA</span>
+            <span className="text-gray-500">,</span>
+            <span className="px-3 py-1 border border-gray-800 rounded bg-black/50 text-green-400">GCP_SERVICES</span>
+            <span className="text-gray-500">,</span>
+            <span className="px-3 py-1 border border-gray-800 rounded bg-black/50 text-yellow-500">SQL_OPTIMIZATION</span>
+          </div>
+
+          <div className="pt-6">
+            <button className="px-8 py-3 bg-white text-black font-bold hover:bg-blue-600 hover:text-white transition-all duration-200 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[4px_4px_0px_0px_rgba(37,99,235,0.5)] hover:translate-y-[-2px]">
+              INITIALIZE_SYSTEM()
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Footer Status */}
+        <div className="absolute bottom-6 text-[10px] text-gray-600 flex gap-4 uppercase tracking-widest">
+          <p>HEAP_SIZE: 1024MB</p>
+          <p>STATUS: LISTENING</p>
         </div>
-      </main>
-    </div>
+
+      </section>
+
+      {/* --- CONTENT SECTIONS --- */}
+      <About />
+      <Education />
+      <Projects />
+      <Contact />
+
+    </main>
   );
 }
