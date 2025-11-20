@@ -26,7 +26,7 @@ export default function Home() {
           <div className="pt-4 flex justify-center"> {/* Added some top padding */}
             <div className="relative w-34 h-34 md:w-42 md:h-42 rounded-full overflow-hidden border-2 border-blue-600 opacity-70 hover:opacity-100 transition-opacity duration-300">
               <Image
-                src="/ini.jpg"
+                src="/hero.jpg"
                 alt="Jussi Torres Profile"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"

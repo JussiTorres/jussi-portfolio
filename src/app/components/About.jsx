@@ -15,7 +15,7 @@ export default function About() {
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-red-600 rounded-lg opacity-50 blur group-hover:opacity-100 transition duration-500"></div>
           <div className="relative bg-black rounded-lg overflow-hidden border border-gray-800 aspect-square md:aspect-auto md:h-[450px]">
             <Image
-              src="/profile.jpg"
+              src="/about-me.jpg"
               alt="Jussi Torres"
               fill
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
