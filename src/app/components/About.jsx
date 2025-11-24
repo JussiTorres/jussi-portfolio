@@ -18,7 +18,8 @@ export default function About() {
               src="/about-me.jpg"
               alt="Jussi Torres"
               fill
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              className="object-cover"
+              loading="eager"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black/90 p-2 border-t border-gray-800 flex justify-between px-4">
               <p className="text-[10px] text-blue-400 font-mono">ID: JUSSI_TORRES</p>
@@ -35,13 +36,13 @@ export default function About() {
 
           <p className="text-gray-400 text-base leading-relaxed font-mono">
             I am a Full Stack Developer specializing in building <span className="text-white font-bold">robust backend systems</span> using <span className="text-white font-bold">Java, Kotlin, and Python</span>. I leverage <span className="text-white font-bold">Google Cloud Platform (GCP)</span> to design and deploy scalable, resilient applications optimized for high performance.
-            <br/><br/>
+            <br /><br />
             My focus is on clean architecture and high-availability databases. Away from the terminal, I enjoy <span className="text-white font-bold">photography</span>, which sharpens my eye for detail, and maintaining discipline through <span className="text-white font-bold">exercise</span>.
           </p>
 
           {/* Skill Bars using Objective Tiers */}
           <div className="space-y-3 font-mono text-xs">
-            
+
             {/* Skill 1: Backend (Java/Kotlin/SpringBoot) - ADVANCED */}
             <div>
               <div className="flex justify-between mb-1">
@@ -50,7 +51,7 @@ export default function About() {
               </div>
               {/* ADVANCED tier uses w-[80%] (e.g., 80% width) */}
               <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-600 w-[80%]"></div> 
+                <div className="h-full bg-blue-600 w-[80%]"></div>
               </div>
             </div>
 

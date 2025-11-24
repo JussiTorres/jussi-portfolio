@@ -30,14 +30,15 @@ export default function Home() {
                 alt="Jussi Torres Profile"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                priority
               />
             </div>
           </div>
 
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-gray-200 to-red-600 animate-pulse">
-                  Jussi Torres
-              </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-gray-200 to-red-600 animate-pulse">
+              Jussi Torres
+            </span>
           </h1>
 
           <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm text-gray-400 font-bold mt-2">
