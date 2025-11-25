@@ -91,10 +91,10 @@ export default function Projects() {
             <div className="space-y-2 text-gray-300 flex-grow">
               <p className="text-red-400">root@wild_rift:~/stats#</p>
               <div className="grid grid-cols-2 gap-2 my-2 text-xs">
-                <div>CPU_LOAD:</div><div className="text-right">12%</div>
-                <div>RANK:</div><div className="text-right text-blue-400">MASTER II</div>
-                <div>WINRATE:</div><div className="text-right text-green-400">58.2%</div>
-                <div>MAIN:</div><div className="text-right text-purple-400">KHA'ZIX</div>
+                <div>USERNAME:</div><div className="text-right">Mqshu#3922</div>
+                <div>RANK:</div><div className="text-right text-blue-400">MASTER I</div>
+                <div>WINRATE:</div><div className="text-right text-green-400">51.4%</div>
+                <div>MAIN:</div><div className="text-right text-purple-400">NAMI</div>
               </div>
               <p className="text-gray-400">Optimizing jungle pathing algorithms...</p>
               <br/>
