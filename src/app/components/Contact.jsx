@@ -40,7 +40,7 @@ export default function Contact() {
         <a href="https://www.instagram.com/jussitorresgonzalez/" target="_blank" 
            className="group relative px-6 py-5 bg-neutral-900 border border-gray-800 transition-all duration-200 text-left shadow-md hover:translate-y-[-1px] hover:shadow-xl hover:border-red-500">
           <div className="absolute top-0 left-0 w-1 h-full bg-gray-800 group-hover:bg-red-500 transition-colors"></div>
-          <p className="text-xs text-gray-500 mb-1 font-mono">CHANNEL</p>
+          <p className="text-xs text-gray-500 mb-1 font-mono">MEDIA</p>
           <h3 className="text-lg font-bold text-white group-hover:text-red-400">INSTAGRAM</h3>
           <p className="text-gray-600 text-xs mt-1 font-mono"> view_images</p>
         </a>
