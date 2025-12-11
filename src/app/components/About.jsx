@@ -3,14 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function About() {
-  // Datos de habilidades organizados para fácil edición
-  const skills = [
-    { name: "Java / Spring Boot", level: 90, color: "bg-blue-500" },
-    { name: "Google Cloud (GCP)", level: 85, color: "bg-green-500" },
-    { name: "SQL & Databases", level: 80, color: "bg-yellow-500" },
-    { name: "Next.js / React", level: 75, color: "bg-purple-500" },
-  ];
-
   return (
     <section id="about" className="py-24 relative bg-neutral-950 overflow-hidden">
       
@@ -33,7 +25,7 @@ export default function About() {
           
           <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/50 shadow-2xl">
             <Image
-              src="/about-me.jpg" // Asegúrate de que esta imagen exista en public/
+              src="/about-me.jpg"
               alt="Jussi Torres"
               width={600}
               height={800}
@@ -80,31 +72,123 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Modern Skill Bars */}
-          <div className="space-y-6">
-            {skills.map((skill, index) => (
-              <motion.div 
-                key={skill.name}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + (index * 0.1) }}
-              >
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-                  <span className="text-xs font-mono text-gray-500">{skill.level}%</span>
-                </div>
-                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-                    className={`h-full ${skill.color} shadow-[0_0_10px_rgba(59,130,246,0.5)]`}
-                  />
-                </div>
-              </motion.div>
-            ))}
+          {/* THE TECH CONSTELLATION (Replaces the old bars) */}
+          <div className="relative h-[300px] w-full mt-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm overflow-hidden">
+            
+            {/* Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
+
+            {/* SVG Connecting Lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {/* Lines connecting the nodes (coordinates are approximate percentages) */}
+              <motion.path 
+                d="M 50% 20% L 80% 50%" // Top to Right
+                stroke="url(#gradient-line)" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.5 }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+              />
+              <motion.path 
+                d="M 50% 20% L 20% 50%" // Top to Left
+                stroke="url(#gradient-line)" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.5 }}
+                transition={{ duration: 1.5, delay: 0.7 }}
+              />
+              <motion.path 
+                d="M 50% 20% L 50% 80%" // Top to Bottom
+                stroke="url(#gradient-line)" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.5 }}
+                transition={{ duration: 1.5, delay: 0.9 }}
+              />
+              <motion.path 
+                d="M 20% 50% L 50% 80%" // Left to Bottom
+                stroke="url(#gradient-line)" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.5 }}
+                transition={{ duration: 1.5, delay: 1.1 }}
+              />
+              <motion.path 
+                d="M 80% 50% L 50% 80%" // Right to Bottom
+                stroke="url(#gradient-line)" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.5 }}
+                transition={{ duration: 1.5, delay: 1.3 }}
+              />
+              
+              <defs>
+                <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#a855f7" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* NODES */}
+            
+            {/* Top Node: Backend */}
+            <motion.div 
+              className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, type: "spring" }}
+            >
+              <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500 flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+              </div>
+              <span className="text-xs font-bold text-blue-300 bg-blue-900/30 px-2 py-1 rounded">Java / Spring</span>
+            </motion.div>
+
+            {/* Right Node: Cloud */}
+            <motion.div 
+              className="absolute top-[50%] left-[80%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.7, type: "spring" }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-green-600/20 border border-green-500 flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.5)]">
+                <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+              </div>
+              <span className="text-xs font-bold text-green-300 bg-green-900/30 px-2 py-1 rounded">GCP Cloud</span>
+            </motion.div>
+
+            {/* Left Node: Frontend */}
+            <motion.div 
+              className="absolute top-[50%] left-[20%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.9, type: "spring" }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              </div>
+              <span className="text-xs font-bold text-purple-300 bg-purple-900/30 px-2 py-1 rounded">Next.js</span>
+            </motion.div>
+
+            {/* Bottom Node: Data */}
+            <motion.div 
+              className="absolute top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 1.1, type: "spring" }}
+            >
+              <div className="w-12 h-12 rounded-xl bg-yellow-600/20 border border-yellow-500 flex items-center justify-center shadow-[0_0_15px_rgba(234,179,8,0.5)]">
+                <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+              </div>
+              <span className="text-xs font-bold text-yellow-300 bg-yellow-900/30 px-2 py-1 rounded">SQL / Data</span>
+            </motion.div>
+
           </div>
 
         </div>
