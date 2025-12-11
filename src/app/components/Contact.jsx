@@ -40,7 +40,6 @@ export default function Contact() {
   ];
 
   return (
-    // FIX: Se eliminó 'border-t border-white/5' para borrar la línea divisoria
     <footer id="contact" className="relative bg-neutral-950 pt-32 pb-12 overflow-hidden">
       
       {/* Footer Glow - RED */}
@@ -100,9 +99,9 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Footer Bottom */}
+        {/* Footer Bottom: CLEAN & MINIMAL */}
         <div className="flex flex-col md:flex-row justify-center items-center pt-8 border-t border-white/5 text-[10px] text-gray-600 font-mono uppercase tracking-widest text-center">
-          <p>© {currentYear} Jussi Torres. All rights reserved.</p>
+          <p>© {currentYear} Jussi Torres</p>
         </div>
 
       </div>
