@@ -65,17 +65,16 @@ export default function Contact() {
             I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
           
-          {/* Button match: Red Solid Theme */}
-          <a 
-            href="" 
-            className="inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-500 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20 tracking-wide uppercase text-sm"
+          {/* FIX: Cambiado de <a> a <div> para que sea solo visual, no funcional */}
+          <div 
+            className="inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-500 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20 tracking-wide uppercase text-sm cursor-default"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             Send me an Email
-          </a>
+          </div>
         </motion.div>
 
-        {/* Social Grid - Restored Brand Colors */}
+        {/* Social Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
           {socialLinks.map((link, index) => (
             <motion.a
@@ -99,7 +98,7 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Footer Bottom: CLEAN & MINIMAL */}
+        {/* Footer Bottom */}
         <div className="flex flex-col md:flex-row justify-center items-center pt-8 border-t border-white/5 text-[10px] text-gray-600 font-mono uppercase tracking-widest text-center">
           <p>© {currentYear} Jussi Torres</p>
         </div>
