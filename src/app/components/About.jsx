@@ -32,8 +32,8 @@ export default function About() {
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
             />
             
-            {/* Minimalist Badge (No Online Status) */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl">
+            {/* FIX: Se eliminó 'right-4' para que la caja se ajuste al contenido */}
+            <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl">
               <p className="text-white text-sm font-bold uppercase tracking-wide">Jussi Torres</p>
               <p className="text-gray-400 text-xs font-mono">SYSTEMS ENGINEER</p>
             </div>
