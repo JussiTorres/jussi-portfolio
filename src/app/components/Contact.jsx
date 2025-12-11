@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 export default function Contact() {
   const currentYear = new Date().getFullYear();
 
-  // Restauramos los colores originales ("The Pop")
   const socialLinks = [
     {
       name: "GitHub",
@@ -41,7 +40,8 @@ export default function Contact() {
   ];
 
   return (
-    <footer id="contact" className="relative bg-neutral-950 pt-32 pb-12 overflow-hidden border-t border-white/5">
+    // FIX: Se eliminó 'border-t border-white/5' para borrar la línea divisoria
+    <footer id="contact" className="relative bg-neutral-950 pt-32 pb-12 overflow-hidden">
       
       {/* Footer Glow - RED */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
@@ -88,7 +88,6 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              // Usamos link.color para el hover específico de cada marca
               className={`flex flex-col items-center justify-center p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-300 group cursor-pointer ${link.color}`}
             >
               <div className="mb-4 text-gray-400 group-hover:text-inherit transition-colors transform group-hover:scale-110 duration-300">
