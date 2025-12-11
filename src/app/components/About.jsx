@@ -23,17 +23,21 @@ export default function About() {
           {/* Glass Card Backdrop */}
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl transform rotate-[-6deg] scale-105" />
           
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/50 shadow-2xl">
+          {/* FIX: Añadido 'aspect-[3/4]' para dar altura al contenedor */}
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/50 shadow-2xl aspect-[3/4]">
             <Image
               src="/about-me.jpg"
               alt="Jussi Torres"
-              width={600}
-              height={800}
-              className="object-cover w-full h-auto grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+              // FIX: Reemplazamos width/height por fill y sizes
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              // FIX: Quitamos 'w-full h-auto' porque 'fill' ya se encarga de eso
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+              priority // Opcional: ayuda a cargarla más rápido si está muy arriba
             />
             
             {/* Floating Badge */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-xl flex justify-between items-center">
+            <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-xl flex justify-between items-center z-10">
               <div>
                 <p className="text-white text-sm font-bold">Jussi Torres</p>
                 <p className="text-gray-400 text-xs">Systems Engineer</p>
@@ -71,8 +75,6 @@ export default function About() {
               I believe in engineering solutions that are not just functional, but elegant and enduring.
             </p>
           </motion.div>
-
-          {/* Espacio intencionalmente vacío para mantener la elegancia */}
 
         </div>
       </div>
