@@ -2,14 +2,12 @@
 import { motion } from "framer-motion";
 
 export default function Education() {
-  // Datos de la trayectoria
   const timelineData = [
     {
       year: "2021 — Present",
       title: "Systems Engineering",
       institution: "Universidad del Magdalena",
-      description:
-        "Building a rigorous foundation in algorithms, software architecture, and operating systems. Specializing in backend development and scalable database solutions.",
+      description: null, // Limpiamos la descripción para un look minimalista
       status: "Enrolled",
       color: "bg-blue-500",
     },
@@ -18,7 +16,7 @@ export default function Education() {
       title: "Cloud Architecture Specialist",
       institution: "Professional Certification Path",
       description:
-        "Focusing on Google Cloud Platform (GCP) and AWS certifications to validate expertise in deploying resilient, high-availability infrastructure.",
+        "Focusing on Google Cloud Platform (GCP) and AWS certifications to validate expertise in deploying resilient infrastructure.",
       status: "Goal",
       color: "bg-purple-500",
     },
@@ -27,13 +25,12 @@ export default function Education() {
   return (
     <section id="education" className="py-24 relative bg-neutral-950 overflow-hidden">
       
-      {/* Background Decor (Matching the theme) */}
+      {/* Background Decor */}
       <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-900/10 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,14 +90,18 @@ export default function Education() {
                     </div>
 
                     <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-400 font-medium mb-3">{item.institution}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {item.description}
+                    <p className={`text-sm text-gray-400 font-medium ${item.description ? "mb-3" : ""}`}>
+                      {item.institution}
                     </p>
+                    
+                    {item.description && (
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* Spacer for the other side (desktop only) */}
                 <div className="hidden md:block md:w-1/2" />
               </motion.div>
             ))}
