@@ -98,12 +98,8 @@ export default function Contact() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-xs text-gray-500 font-mono uppercase tracking-widest">
+        <div className="flex flex-col md:flex-row justify-center items-center pt-8 border-t border-white/10 text-xs text-gray-500 font-mono uppercase tracking-widest text-center">
           <p>© {currentYear} Jussi Torres. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <span>Loc: Colombia</span>
-            <span>Status: Online</span>
-          </div>
         </div>
 
       </div>

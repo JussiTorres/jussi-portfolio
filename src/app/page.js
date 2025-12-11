@@ -98,7 +98,7 @@ export default function Home() {
             </button>
             
             <button 
-              onClick={() => scrollToSection('contact')} // Asegúrate de que tu componente Contact tenga id="contact"
+              onClick={() => scrollToSection('contact')}
               className="px-8 py-3.5 bg-neutral-900 border border-white/10 hover:bg-white/5 text-white font-medium rounded-full transition-all flex items-center justify-center hover:scale-105 active:scale-95"
             >
               Contact Me
@@ -107,18 +107,6 @@ export default function Home() {
 
         </div>
 
-        {/* Footer Data */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-8 flex gap-6 text-[10px] text-gray-600 font-mono tracking-widest uppercase"
-        >
-          <span>Loc: Colombia</span>
-          <span className="hidden md:inline">Status: Available</span>
-          <span>v2.0.0</span>
-        </motion.div>
-
       </section>
 
       {/* --- CONTENT SECTIONS --- */}
@@ -126,7 +114,6 @@ export default function Home() {
       <Education />
       <Projects />
       
-      {/* IMPORTANTE: Añade el ID al componente Contact si no lo tiene internamente */}
       <div id="contact">
         <Contact />
       </div>
