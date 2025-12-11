@@ -1,7 +1,12 @@
-"use client";
+"use client"; // <--- ESTO ARREGLA EL REFERENCE ERROR
 
 import { motion } from "framer-motion";
-import Image from "next/image"; // Mantenemos el import por si lo necesitas más tarde
+import Image from "next/image"; // Mantener este import, aunque usemos <img> abajo
+
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Education from "./components/Education";
 
 export default function Home() {
   
@@ -25,7 +30,7 @@ export default function Home() {
 
         <div className="z-10 text-center space-y-8 px-6 max-w-5xl">
           
-          {/* Animated Profile Picture: USANDO <img> para evitar el error de Next.js */}
+          {/* Animated Profile Picture: USANDO <img> con cache-bust */}
           <motion.div 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -33,10 +38,10 @@ export default function Home() {
             className="relative mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-blue-600 to-gray-800"
           >
             <div className="w-full h-full rounded-full overflow-hidden border-4 border-neutral-950 relative">
-              <img // <-- FIX: Cambiado de <Image> a <img>
-                src="/hero.jpg?v=3" // <-- FIX: Usando el parámetro v=3 para cache bust
+              <img 
+                src="/hero.jpg?v=4" // <-- Forzando la recarga de la nueva imagen
                 alt="Jussi Torres"
-                className="object-cover w-full h-full" // <-- Necesita dimensiones explícitas
+                className="object-cover w-full h-full"
               />
             </div>
           </motion.div>
