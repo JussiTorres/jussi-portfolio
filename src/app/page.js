@@ -26,17 +26,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-neutral-950/50 to-neutral-950 z-0 pointer-events-none" />
         
-        {/* El Glow central ahora es ROJO */}
+        {/* Glow Central ROJO */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px] -z-10" />
 
         <div className="z-10 text-center space-y-8 px-6 max-w-5xl">
           
-          {/* Profile Picture: Aumentada a w-64 (256px) en desktop para más presencia */}
+          {/* Profile Picture: Ajustada a w-52 (208px) para balance minimalista */}
           <motion.div 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="relative mx-auto w-48 h-48 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-tr from-red-600 to-neutral-800"
+            className="relative mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full p-1 bg-gradient-to-tr from-red-600 to-neutral-800"
           >
             <div className="w-full h-full rounded-full overflow-hidden border-4 border-neutral-950 relative">
               <img 
@@ -72,7 +72,7 @@ export default function Home() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }} // Ajustado delay ya que quitamos las pills
+            transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center pt-8"
           >
             <button 
