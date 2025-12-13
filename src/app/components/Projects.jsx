@@ -13,6 +13,7 @@ export default function Projects() {
       version: "v1.2.4 RELEASE",
       badgeColor: "text-red-400 bg-red-900/20 border-red-900/30",
       icon: "/projects/eq-volume/icon.png",
+
       description: (
         <>
           The ultimate audio control for Chrome. Boost volume up to <span className="text-white font-bold">400%</span>, customize frequencies with a precision <span className="text-white font-bold">3-Band Equalizer</span> (Bass, Mid, Treble), and experience crystal clear sound processing via the Web Audio API.
@@ -31,28 +32,33 @@ export default function Projects() {
         label: "Source Code",
         url: "https://github.com/JussiTorres/chrome-eq-boost"
       },
-      visual: "eq" // Tipo de visualización
+      visual: "eq"
     },
     {
       id: "soundpulse",
       title: "SoundPulse",
-      version: "UPCOMING OPEN-SOURCE",
+      version: "IN DEVELOPMENT",
       badgeColor: "text-gray-400 bg-white/5 border-white/10",
-      icon: null, // SVG in code
-      isSecret: true, // Flag para activar modo secreto
-      description: "CLASSIFIED PROJECT DATA. AWAITING DECLASSIFICATION UPON LAUNCH.", // Texto placeholder
+      icon: null, 
+      isSecret: true,
+
+      description: (
+        <span className="font-mono text-red-400/80 tracking-widest text-sm">
+          [ SYSTEM INITIALIZING... ] <br/> 
+          <span className="text-gray-500 normal-case tracking-normal">
+            Advanced audio data visualization architecture. Currently under active development.
+          </span>
+        </span>
+      ), 
       tags: ['Next.js', 'Data Viz', 'Public API', 'Analytics'],
       primaryAction: {
         label: "Coming Soon",
         url: "#",
         icon: <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>,
-        active: false // Desactivado
+        active: false
       },
-      secondaryAction: {
-        label: "GitHub",
-        url: "https://github.com/JussiTorres"
-      },
-      visual: "pulse"
+      secondaryAction: null,
+      visual: "sine"
     }
   ];
 
@@ -69,7 +75,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-neutral-950">
       
-      {/* Background Glow Effect - Red Theme */}
+      {/* Background Glow Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
@@ -146,24 +152,11 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Description Area */}
+                  {/* Description Area*/}
                   <div className="relative">
-                    {currentProject.isSecret ? (
-                      <div className="space-y-2">
-                        {/* REDACTED TEXT EFFECT */}
-                        <div className="bg-white/5 p-4 rounded border border-white/5 font-mono text-sm text-red-400/80 tracking-widest uppercase select-none flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                          [CLASSIFIED DATA]
-                        </div>
-                        <p className="text-gray-500 text-sm blur-[4px] select-none opacity-50">
-                          The heartbeat of your music history. A powerful data visualization platform for Last.fm & ListenBrainz.
-                        </p>
-                      </div>
-                    ) : (
-                      <p className="text-gray-400 leading-relaxed font-medium text-lg">
-                        {currentProject.description}
-                      </p>
-                    )}
+                    <p className="text-gray-400 leading-relaxed font-medium text-lg">
+                      {currentProject.description}
+                    </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -192,14 +185,17 @@ export default function Projects() {
                       </div>
                     )}
                    
-                    <a 
-                      href={currentProject.secondaryAction.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="px-8 py-4 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center"
-                    >
-                      {currentProject.secondaryAction.label}
-                    </a>
+                    {/* Render Secondary Action ONLY if it exists */}
+                    {currentProject.secondaryAction && (
+                      <a 
+                        href={currentProject.secondaryAction.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="px-8 py-4 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center"
+                      >
+                        {currentProject.secondaryAction.label}
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -222,26 +218,24 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {currentProject.visual === 'pulse' && (
-                    <div className="relative w-full h-32 flex items-center px-8">
-                       <svg className="w-full h-full overflow-visible" viewBox="0 0 300 100">
+                  {/* SINE WAVE ANIMATION */}
+                  {currentProject.visual === 'sine' && (
+                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                       <svg className="w-[200%] h-full absolute" viewBox="0 0 600 100" preserveAspectRatio="none">
                           <motion.path
-                            d="M0,50 L30,50 L45,20 L60,80 L75,50 L100,50 L115,10 L130,90 L145,50 L300,50"
+                            d="M0,50 Q75,100 150,50 T300,50 Q375,100 450,50 T600,50"
                             fill="none"
                             stroke="#DC2626"
-                            strokeWidth="3"
+                            strokeWidth="4"
                             strokeLinecap="round"
-                            strokeLinejoin="round"
-                            initial={{ pathLength: 0, opacity: 0 }}
-                            animate={{ pathLength: 1, opacity: 1 }}
+                            initial={{ x: 0 }}
+                            animate={{ x: -300 }} // Moves exactly one wave length to create seamless loop
                             transition={{ 
-                              duration: 2, 
-                              ease: "easeInOut", 
-                              repeat: Infinity,
-                              repeatType: "loop",
-                              repeatDelay: 0.5
+                              duration: 3, 
+                              ease: "linear", 
+                              repeat: Infinity 
                             }}
-                            style={{ filter: "drop-shadow(0 0 8px rgba(220, 38, 38, 0.5))" }}
+                            style={{ filter: "drop-shadow(0 0 10px rgba(220, 38, 38, 0.4))" }}
                           />
                        </svg>
                     </div>
