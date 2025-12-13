@@ -13,7 +13,7 @@ export default function Projects() {
       version: "v1.2.4 RELEASE",
       badgeColor: "text-red-400 bg-red-900/20 border-red-900/30",
       icon: "/projects/eq-volume/icon.png",
-
+      // Descripción normal visible
       description: (
         <>
           The ultimate audio control for Chrome. Boost volume up to <span className="text-white font-bold">400%</span>, customize frequencies with a precision <span className="text-white font-bold">3-Band Equalizer</span> (Bass, Mid, Treble), and experience crystal clear sound processing via the Web Audio API.
@@ -41,15 +41,8 @@ export default function Projects() {
       badgeColor: "text-gray-400 bg-white/5 border-white/10",
       icon: null, 
       isSecret: true,
-
-      description: (
-        <span className="font-mono text-red-400/80 tracking-widest text-sm">
-          [ SYSTEM INITIALIZING... ] <br/> 
-          <span className="text-gray-500 normal-case tracking-normal">
-            Advanced audio data visualization architecture. Currently under active development.
-          </span>
-        </span>
-      ), 
+      // Descripción "Placeholder" que será borrosa
+      description: "A powerful data visualization platform for Last.fm & ListenBrainz. Tracking listening habits in real-time with pixel-perfect precision.",
       tags: ['Next.js', 'Data Viz', 'Public API', 'Analytics'],
       primaryAction: {
         label: "Coming Soon",
@@ -57,7 +50,7 @@ export default function Projects() {
         icon: <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>,
         active: false
       },
-      secondaryAction: null,
+      secondaryAction: null, 
       visual: "sine"
     }
   ];
@@ -75,7 +68,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-neutral-950">
       
-      {/* Background Glow Effect */}
+      {/* Background Glow Effect - Red Theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
@@ -152,11 +145,25 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Description Area*/}
+                  {/* Description Area */}
                   <div className="relative">
-                    <p className="text-gray-400 leading-relaxed font-medium text-lg">
-                      {currentProject.description}
-                    </p>
+                    {currentProject.isSecret ? (
+                      <div className="space-y-4">
+                        {/* SERIOUS & PROFESSIONAL HEADER */}
+                        <div className="font-mono text-sm text-red-400/80 tracking-widest uppercase select-none border-l-2 border-red-500 pl-3">
+                          IN DEVELOPMENT
+                        </div>
+                        
+                        {/* THE BLUR EFFECT IS BACK */}
+                        <p className="text-gray-500 text-lg blur-[5px] select-none opacity-50 leading-relaxed">
+                           {currentProject.description}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="text-gray-400 leading-relaxed font-medium text-lg">
+                        {currentProject.description}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -185,7 +192,6 @@ export default function Projects() {
                       </div>
                     )}
                    
-                    {/* Render Secondary Action ONLY if it exists */}
                     {currentProject.secondaryAction && (
                       <a 
                         href={currentProject.secondaryAction.url} 
@@ -218,20 +224,23 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* SINE WAVE ANIMATION */}
+                  {/* SINE WAVE ANIMATION - SEAMLESS LOOP FIX */}
                   {currentProject.visual === 'sine' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                       <svg className="w-[200%] h-full absolute" viewBox="0 0 600 100" preserveAspectRatio="none">
+                       <svg className="w-[200%] h-full absolute" viewBox="0 0 1200 100" preserveAspectRatio="none">
+                          {/* The path is drawn with multiple cycles (0-300, 300-600, 600-900, 900-1200)
+                             This ensures that when we translate -300 units, the visual is identical to the start position.
+                          */}
                           <motion.path
-                            d="M0,50 Q75,100 150,50 T300,50 Q375,100 450,50 T600,50"
+                            d="M0,50 Q75,100 150,50 T300,50 T450,50 T600,50 T750,50 T900,50 T1050,50 T1200,50"
                             fill="none"
                             stroke="#DC2626"
                             strokeWidth="4"
                             strokeLinecap="round"
                             initial={{ x: 0 }}
-                            animate={{ x: -300 }} // Moves exactly one wave length to create seamless loop
+                            animate={{ x: -300 }} // Moves exactly one wave length (300 units)
                             transition={{ 
-                              duration: 3, 
+                              duration: 4, 
                               ease: "linear", 
                               repeat: Infinity 
                             }}
