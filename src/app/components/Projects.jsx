@@ -34,12 +34,13 @@ export default function Projects() {
           transition={{ duration: 0.3 }}
           className="group relative bg-neutral-900/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-red-600/30 transition-colors"
         >
-          <div className="grid md:grid-cols-2 gap-8 p-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8 p-6 md:p-8 items-center">
             
             {/* Left: Content */}
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-black/60 rounded-2xl border border-white/10">
+                {/* FIX MOBILE: 'shrink-0' evita que el icono se aplaste en pantallas pequeñas */}
+                <div className="p-3 bg-black/60 rounded-2xl border border-white/10 shrink-0">
                   <Image 
                     src="/projects/eq-volume/icon.png" 
                     alt="EQ Logo" 
@@ -48,15 +49,15 @@ export default function Projects() {
                     className="w-12 h-12"
                   />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tight">Chrome EQ Boost</h3>
-                  <span className="text-[10px] font-mono font-bold text-red-400 px-2 py-1 bg-red-900/20 rounded border border-red-900/30">
+                <div className="min-w-0"> {/* min-w-0 ayuda al truncamiento de texto si fuera necesario */}
+                  <h3 className="text-2xl font-black text-white uppercase tracking-tight leading-none mb-1">Chrome EQ Boost</h3>
+                  <span className="text-[10px] font-mono font-bold text-red-400 px-2 py-1 bg-red-900/20 rounded border border-red-900/30 inline-block">
                     v1.2.4 RELEASE
                   </span>
                 </div>
               </div>
 
-              <p className="text-gray-400 leading-relaxed font-medium">
+              <p className="text-gray-400 leading-relaxed font-medium text-sm md:text-base">
                 The ultimate audio control for Chrome. Boost volume up to <span className="text-white font-bold">400%</span>, customize frequencies with a precision <span className="text-white font-bold">3-Band Equalizer</span> (Bass, Mid, Treble), and experience crystal clear sound processing via the Web Audio API.
               </p>
 
@@ -69,22 +70,29 @@ export default function Projects() {
               </div>
 
               <div className="flex gap-4 pt-2">
-                <button className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95">
+                {/* FIX: Ahora es un enlace <a> real a la Chrome Web Store */}
+                <a 
+                  href="https://chromewebstore.google.com/detail/faklnjopaahkgaeklkplejmknidfcofh?utm_source=item-share-cb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95 text-center justify-center"
+                >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                   Install
-                </button>
+                </a>
+                
                 <a 
                   href="https://github.com/JussiTorres/chrome-eq-boost" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95"
+                  className="px-6 py-3 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center"
                 >
                   Source Code
                 </a>
               </div>
             </div>
 
-            {/* Right: Visual Showcase (Abstract Representation - Red Theme) */}
+            {/* Right: Visual Showcase - Red Theme */}
             <div className="relative h-full min-h-[250px] bg-gradient-to-br from-neutral-800/30 to-black/50 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden group-hover:shadow-2xl transition-all">
               
               {/* Grid Overlay */}
