@@ -13,7 +13,6 @@ export default function Projects() {
       version: "v1.2.4 RELEASE",
       badgeColor: "text-red-400 bg-red-900/20 border-red-900/30",
       icon: "/projects/eq-volume/icon.png",
-      // Descripción normal visible
       description: (
         <>
           The ultimate audio control for Chrome. Boost volume up to <span className="text-white font-bold">400%</span>, customize frequencies with a precision <span className="text-white font-bold">3-Band Equalizer</span> (Bass, Mid, Treble), and experience crystal clear sound processing via the Web Audio API.
@@ -41,7 +40,6 @@ export default function Projects() {
       badgeColor: "text-gray-400 bg-white/5 border-white/10",
       icon: null, 
       isSecret: true,
-      // Descripción "Placeholder" que será borrosa
       description: "A powerful data visualization platform for Last.fm & ListenBrainz. Tracking listening habits in real-time with pixel-perfect precision.",
       tags: ['Next.js', 'Data Viz', 'Public API', 'Analytics'],
       primaryAction: {
@@ -149,12 +147,15 @@ export default function Projects() {
                   <div className="relative">
                     {currentProject.isSecret ? (
                       <div className="space-y-4">
-                        {/* SERIOUS & PROFESSIONAL HEADER */}
-                        <div className="font-mono text-sm text-red-400/80 tracking-widest uppercase select-none border-l-2 border-red-500 pl-3">
-                          IN DEVELOPMENT
+                        {/* FIX: LOCK ICON + BADGE STYLE */}
+                        <div className="bg-red-950/30 border border-red-500/20 p-3 rounded-lg flex items-center gap-3 w-fit">
+                           <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                           <span className="font-mono text-xs text-red-400 font-bold tracking-widest uppercase select-none">
+                             IN ACTIVE DEVELOPMENT
+                           </span>
                         </div>
                         
-                        {/* THE BLUR EFFECT IS BACK */}
+                        {/* THE BLUR EFFECT */}
                         <p className="text-gray-500 text-lg blur-[5px] select-none opacity-50 leading-relaxed">
                            {currentProject.description}
                         </p>
@@ -224,27 +225,44 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* SINE WAVE ANIMATION - SEAMLESS LOOP FIX */}
+                  {/* SINE WAVE ANIMATION - IMPROVED (DOUBLE WAVE) */}
                   {currentProject.visual === 'sine' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                        <svg className="w-[200%] h-full absolute" viewBox="0 0 1200 100" preserveAspectRatio="none">
-                          {/* The path is drawn with multiple cycles (0-300, 300-600, 600-900, 900-1200)
-                             This ensures that when we translate -300 units, the visual is identical to the start position.
-                          */}
+                          
+                          {/* Ghost Wave (Background, fainter) */}
+                          <motion.path
+                            d="M0,50 Q75,100 150,50 T300,50 T450,50 T600,50 T750,50 T900,50 T1050,50 T1200,50"
+                            fill="none"
+                            stroke="#EF4444"
+                            strokeWidth="1"
+                            strokeOpacity="0.3"
+                            strokeLinecap="round"
+                            initial={{ x: 0 }}
+                            animate={{ x: -300 }} 
+                            transition={{ 
+                              duration: 4, 
+                              ease: "linear", 
+                              repeat: Infinity,
+                              delay: 0.2 // Slight delay for phase shift effect
+                            }}
+                          />
+
+                          {/* Main Wave (Foreground, sharper) */}
                           <motion.path
                             d="M0,50 Q75,100 150,50 T300,50 T450,50 T600,50 T750,50 T900,50 T1050,50 T1200,50"
                             fill="none"
                             stroke="#DC2626"
-                            strokeWidth="4"
+                            strokeWidth="3"
                             strokeLinecap="round"
                             initial={{ x: 0 }}
-                            animate={{ x: -300 }} // Moves exactly one wave length (300 units)
+                            animate={{ x: -300 }} 
                             transition={{ 
                               duration: 4, 
                               ease: "linear", 
                               repeat: Infinity 
                             }}
-                            style={{ filter: "drop-shadow(0 0 10px rgba(220, 38, 38, 0.4))" }}
+                            style={{ filter: "drop-shadow(0 0 8px rgba(220, 38, 38, 0.6))" }}
                           />
                        </svg>
                     </div>
