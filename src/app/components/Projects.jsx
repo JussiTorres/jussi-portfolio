@@ -165,33 +165,39 @@ export default function Projects() {
                 <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
-                  {/* EQ VISUAL: Independent bars, no sine wave, no jitter */}
+                  {/* EQ VISUAL: Diamond shape, slower RGB, independent movement */}
                   {currentProject.visual === 'eq' && (
                     <div className="flex gap-2 items-end h-40 z-10">
-                      {[...Array(10)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{
-                            height: [
-                              `${20 + (i % 4) * 10}%`,
-                              `${70 + (i % 2) * 10}%`,
-                              `${40 + (i % 3) * 10}%`,
-                              `${20 + (i % 4) * 10}%`
-                            ],
-                            backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"],
-                          }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 1.2 + (i * 0.15), // Varied duration prevents the sine wave effect
-                            ease: "easeInOut"
-                          }}
-                          className="w-3 rounded-full shadow-[0_0_20px_rgba(239,68,68,0.3)]"
-                        />
-                      ))}
+                      {[...Array(10)].map((_, i) => {
+                        // Calculate distance from center to create the diamond shape
+                        const distFromCenter = Math.abs(i - 4.5);
+                        const heightMultiplier = 1 - (distFromCenter / 6); // Center bars are taller
+
+                        return (
+                          <motion.div
+                            key={i}
+                            animate={{
+                              height: [
+                                `${25 * heightMultiplier}%`,
+                                `${85 * heightMultiplier}%`,
+                                `${50 * heightMultiplier}%`,
+                                `${25 * heightMultiplier}%`
+                              ],
+                              backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"],
+                            }}
+                            transition={{
+                              repeat: Infinity,
+                              duration: 3 + (i * 0.2), // Increased duration for slower, smoother RGB and movement
+                              ease: "easeInOut"
+                            }}
+                            className="w-3 rounded-full shadow-[0_0_20px_rgba(239,68,68,0.2)]"
+                          />
+                        );
+                      })}
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Dots only, RGB restored, 12 segments */}
+                  {/* DNA HELIX VISUAL: Unchanged as requested (Dots only, RGB, 12 segments) */}
                   {currentProject.visual === 'dna-helix' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                       <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
