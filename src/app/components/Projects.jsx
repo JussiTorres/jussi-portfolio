@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -49,7 +49,7 @@ export default function Projects() {
         active: false
       },
       secondaryAction: null,
-      visual: "data-grid" 
+      visual: "dna-helix" 
     }
   ];
 
@@ -65,13 +65,9 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-neutral-950">
-
-      {/* Background Glow Effect - Red Theme (Boosted) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/20 rounded-full blur-[200px] -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/10 rounded-full blur-[200px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
-
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,24 +83,16 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Slider Controls */}
           <div className="flex gap-2">
-            <button
-              onClick={prevProject}
-              className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group"
-            >
+            <button onClick={prevProject} className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group">
               <svg className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
             </button>
-            <button
-              onClick={nextProject}
-              className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group"
-            >
+            <button onClick={nextProject} className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group">
               <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
           </div>
         </motion.div>
 
-        {/* Carousel Container */}
         <div className="relative min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -116,19 +104,11 @@ export default function Projects() {
               className="group relative bg-neutral-900/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl"
             >
               <div className="grid md:grid-cols-2 gap-8 p-6 md:p-12 items-center min-h-[500px]">
-
-                {/* Left: Content */}
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
                     <div className="p-4 bg-black/60 rounded-2xl border border-white/10 shrink-0 flex items-center justify-center">
                       {currentProject.id === 'eq-boost' ? (
-                        <Image
-                          src={currentProject.icon}
-                          alt="Icon"
-                          width={48}
-                          height={48}
-                          className="w-12 h-12"
-                        />
+                        <Image src={currentProject.icon} alt="Icon" width={48} height={48} className="w-12 h-12" />
                       ) : (
                         <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -143,166 +123,108 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Description Area */}
                   <div className="relative">
                     {currentProject.isSecret ? (
                       <div className="space-y-4">
-                        {/* LOCK ICON + BADGE STYLE */}
                         <div className="bg-red-950/30 border border-red-500/20 p-3 rounded-lg flex items-center gap-3 w-fit">
                           <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                          <span className="font-mono text-xs text-red-400 font-bold tracking-widest uppercase select-none">
-                            IN ACTIVE DEVELOPMENT
-                          </span>
+                          <span className="font-mono text-xs text-red-400 font-bold tracking-widest uppercase select-none">IN ACTIVE DEVELOPMENT</span>
                         </div>
-
-                        {/* BLUR EFFECT */}
-                        <p className="text-gray-500 text-lg blur-[5px] select-none opacity-50 leading-relaxed">
-                          {currentProject.description}
-                        </p>
+                        <p className="text-gray-500 text-lg blur-[5px] select-none opacity-50 leading-relaxed">{currentProject.description}</p>
                       </div>
                     ) : (
-                      <p className="text-gray-400 leading-relaxed font-medium text-lg">
-                        {currentProject.description}
-                      </p>
+                      <p className="text-gray-400 leading-relaxed font-medium text-lg">{currentProject.description}</p>
                     )}
                   </div>
 
                   <div className="flex flex-wrap gap-2">
                     {currentProject.tags.map((tag) => (
-                      <span key={tag} className="text-xs font-bold text-gray-300 bg-white/5 px-3 py-1 rounded border border-white/5">
-                        {tag}
-                      </span>
+                      <span key={tag} className="text-xs font-bold text-gray-300 bg-white/5 px-3 py-1 rounded border border-white/5">{tag}</span>
                     ))}
                   </div>
 
                   <div className="flex gap-4 pt-2">
                     {currentProject.primaryAction.active ? (
-                      <a
-                        href={currentProject.primaryAction.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95"
-                      >
-                        {currentProject.primaryAction.icon}
-                        {currentProject.primaryAction.label}
+                      <a href={currentProject.primaryAction.url} target="_blank" rel="noopener noreferrer" className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95">
+                        {currentProject.primaryAction.icon} {currentProject.primaryAction.label}
                       </a>
                     ) : (
                       <div className="px-8 py-4 rounded-full font-bold text-gray-500 border border-white/5 bg-white/5 text-sm uppercase tracking-wide cursor-not-allowed flex items-center gap-2">
-                        {currentProject.primaryAction.icon}
-                        {currentProject.primaryAction.label}
+                        {currentProject.primaryAction.icon} {currentProject.primaryAction.label}
                       </div>
                     )}
-
                     {currentProject.secondaryAction && (
-                      <a
-                        href={currentProject.secondaryAction.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-8 py-4 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center"
-                      >
+                      <a href={currentProject.secondaryAction.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center">
                         {currentProject.secondaryAction.label}
                       </a>
                     )}
                   </div>
                 </div>
 
-                {/* Right: Visual Showcase (Polished Container) */}
-                <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-red-900/20 flex items-center justify-center overflow-hidden group-hover:border-red-600/40 transition-all duration-500">
+                {/* Right: Refined Visual Showcase */}
+                <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
-                  {/* EQ VISUAL (Dynamic & Pumped) */}
+                  {/* Refined EQ VISUAL: Centered and contained */}
                   {currentProject.visual === 'eq' && (
-                    <div className="flex gap-4 items-end h-64 z-10">
-                      {[65, 90, 45, 80, 60, 95, 40, 75, 55].map((baseH, i) => (
+                    <div className="flex gap-2 items-end h-32 z-10">
+                      {[40, 70, 50, 90, 60, 80, 45].map((baseH, i) => (
                         <motion.div
                           key={i}
-                          animate={{
-                            height: [
-                              `${baseH}%`,
-                              `${baseH + 30}%`,
-                              `${baseH - 20}%`,
-                              `${baseH + 15}%`,
-                              `${baseH}%`
-                            ]
-                          }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 2 + i * 0.1,
-                            ease: "easeInOut",
-                            delay: i * 0.05
-                          }}
-                          className="w-8 bg-gradient-to-t from-red-700 via-red-500 to-red-400 rounded-t-full shadow-[0_0_30px_rgba(239,68,68,0.7)]"
+                          animate={{ height: [`${baseH}%`, `${baseH + 20}%`, `${baseH - 10}%`, `${baseH}%`] }}
+                          transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.1, ease: "easeInOut" }}
+                          className="w-3 bg-gradient-to-t from-red-600 to-red-400 rounded-t-full shadow-[0_0_15px_rgba(239,68,68,0.5)]"
                           style={{ height: `${baseH}%` }}
                         />
                       ))}
                     </div>
                   )}
 
-                  {/* DATA GRID VISUAL (SoundPulse - Traveling Sine Waves) */}
-                  {currentProject.visual === 'data-grid' && (
+                  {/* DNA HELIX VISUAL: Spinning effect with depth */}
+                  {currentProject.visual === 'dna-helix' && (
                     <div className="relative w-full h-full flex items-center justify-center">
-                      {/* Traveling sine wave made of glowing dots */}
-                      <div className="flex gap-3 items-center">
-                        {Array.from({ length: 15 }).map((_, i) => (
-                          <motion.div
-                            key={i}
-                            animate={{
-                              y: [0, -40, 0, 40, 0],
-                              opacity: [0.4, 1, 0.4, 1, 0.4],
-                              scale: [1, 1.4, 1]
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              delay: i * 0.15,
-                              ease: "easeInOut"
-                            }}
-                            className="w-4 h-4 bg-red-500 rounded-full shadow-[0_0_20px_rgba(239,68,68,0.8)]"
-                          />
-                        ))}
-                      </div>
-                      {/* Secondary wave, inverted and delayed */}
-                      <div className="absolute flex gap-3 items-center">
-                        {Array.from({ length: 15 }).map((_, i) => (
-                          <motion.div
-                            key={i}
-                            animate={{
-                              y: [0, 40, 0, -40, 0],
-                              opacity: [0.3, 0.8, 0.3],
-                              scale: [0.8, 1.2, 0.8]
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              delay: i * 0.15 + 0.75
-                            }}
-                            className="w-3 h-3 bg-red-600 rounded-full shadow-[0_0_15px_rgba(220,38,38,0.6)] blur-sm"
-                          />
+                      <div className="flex gap-4">
+                        {Array.from({ length: 8 }).map((_, i) => (
+                          <div key={i} className="relative h-48 flex flex-col justify-center items-center">
+                            {/* Strand 1 (Front/Back) */}
+                            <motion.div
+                              animate={{ 
+                                y: [-40, 40, -40],
+                                scale: [1, 0.5, 1],
+                                opacity: [1, 0.4, 1],
+                                zIndex: [10, 0, 10]
+                              }}
+                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                              className="absolute w-3 h-3 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"
+                            />
+                            {/* Strand 2 (Inverted) */}
+                            <motion.div
+                              animate={{ 
+                                y: [40, -40, 40],
+                                scale: [0.5, 1, 0.5],
+                                opacity: [0.4, 1, 0.4],
+                                zIndex: [0, 10, 0]
+                              }}
+                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                              className="absolute w-3 h-3 bg-red-700 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.6)]"
+                            />
+                          </div>
                         ))}
                       </div>
                     </div>
                   )}
-
-                  <div className="absolute inset-0 bg-black/20 transition-colors" />
+                  <div className="absolute inset-0 bg-black/20" />
                 </div>
-
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Dots Navigation */}
         <div className="flex justify-center gap-2 mt-8">
           {projects.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-red-600" : "bg-white/20 hover:bg-white/40"
-                }`}
-            />
+            <button key={idx} onClick={() => setCurrentIndex(idx)} className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-red-600" : "bg-white/20 hover:bg-white/40"}`} />
           ))}
         </div>
-
       </div>
     </section>
   );
