@@ -197,43 +197,45 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Red vs Blue contrast, 12 segments */}
+                  {/* DNA HELIX VISUAL: Corrección de física para realismo (12 segmentos) */}
                   {currentProject.visual === 'dna-helix' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                      <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
+                      <div className="flex gap-3 md:gap-4 scale-90 md:scale-105">
                         {Array.from({ length: 12 }).map((_, i) => (
                           <div key={i} className="relative h-48 flex flex-col justify-center items-center">
 
-                            {/* Strand 1: Pure Red */}
+                            {/* Strand 1: Rojo (Frente -> Atrás) */}
                             <motion.div
                               animate={{
-                                y: [-50, 50, -50],
-                                scale: [1.2, 0.6, 1.2],
+                                y: [-40, 40, -40], // Amplitud ajustada para que no sea tan exagerada
+                                scale: [1.2, 0.5, 1.2], // El cambio de tamaño crea la ilusión de profundidad
+                                opacity: [1, 0.4, 1], // Se desvanece al ir al fondo
                                 zIndex: [10, 0, 10]
                               }}
                               transition={{
-                                duration: 4,
+                                duration: 3, // Un poco más rápido para dar energía
                                 repeat: Infinity,
-                                delay: i * 0.15,
+                                delay: i * 0.25, // AUMENTADO: Esto crea el "giro" de la hélice
                                 ease: "easeInOut"
                               }}
-                              className="absolute w-3.5 h-3.5 rounded-full bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.6)]"
+                              className="absolute w-3.5 h-3.5 rounded-full bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
                             />
 
-                            {/* Strand 2: Pure Blue (Offset) */}
+                            {/* Strand 2: Azul (Atrás -> Frente) */}
                             <motion.div
                               animate={{
-                                y: [50, -50, 50],
-                                scale: [0.6, 1.2, 0.6],
+                                y: [40, -40, 40],
+                                scale: [0.5, 1.2, 0.5],
+                                opacity: [0.4, 1, 0.4],
                                 zIndex: [0, 10, 0]
                               }}
                               transition={{
-                                duration: 4,
+                                duration: 3,
                                 repeat: Infinity,
-                                delay: i * 0.15,
+                                delay: i * 0.25, // Sincronizado para completar el giro
                                 ease: "easeInOut"
                               }}
-                              className="absolute w-3.5 h-3.5 rounded-full bg-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.6)]"
+                              className="absolute w-3.5 h-3.5 rounded-full bg-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.7)]"
                             />
                           </div>
                         ))}
