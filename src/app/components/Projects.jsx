@@ -162,76 +162,67 @@ export default function Projects() {
                 </div>
 
                 {/* Right: Refined Visual Showcase */}
-                <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
+                <div className="relative h-full min-h-[300px] md:min-h-full bg-neutral-900/40 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-                  {/* EQ VISUAL: Más barras y cambio de color dinámico */}
+                  {/* EQ VISUAL: Menos barras, más bajas y fluidas */}
                   {currentProject.visual === 'eq' && (
-                    <div className="flex gap-1.5 items-end h-40 z-10">
-                      {[...Array(15)].map((_, i) => (
+                    <div className="flex gap-2.5 items-end h-32 z-10">
+                      {[...Array(9)].map((_, i) => (
                         <motion.div
                           key={i}
                           animate={{
-                            height: [`${20 + Math.random() * 20}%`, `${60 + Math.random() * 40}%`, `${30 + Math.random() * 20}%`],
-                            backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"], // Ciclo: Rojo -> Naranja -> Violeta
+                            height: ["20%", "65%", "35%", "50%", "20%"],
+                            backgroundColor: ["#dc2626", "#ea580c", "#dc2626"]
                           }}
                           transition={{
                             repeat: Infinity,
-                            duration: 1 + Math.random(),
-                            delay: i * 0.05,
+                            duration: 2.5,
+                            delay: i * 0.15,
                             ease: "easeInOut"
                           }}
-                          className="w-2 md:w-3 rounded-t-full shadow-[0_0_20px_rgba(239,68,68,0.4)]"
+                          className="w-3 rounded-full opacity-80 shadow-[0_0_15px_rgba(220,38,38,0.2)]"
                         />
                       ))}
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Extendida y con cambios cromáticos */}
+                  {/* DNA HELIX VISUAL: Acortada a 12 y con estructura sólida */}
                   {currentProject.visual === 'dna-helix' && (
-                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                      <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
-                        {Array.from({ length: 14 }).map((_, i) => ( // Aumentado de 8 a 14 para que sea más larga
-                          <div key={i} className="relative h-48 flex flex-col justify-center items-center">
-                            {/* Línea de conexión (Peldaño) */}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <div className="flex gap-4 md:gap-5 scale-90">
+                        {Array.from({ length: 12 }).map((_, i) => (
+                          <div key={i} className="relative h-32 flex flex-col justify-center items-center">
+                            {/* Línea de conexión estable */}
+                            <div className="absolute w-[1px] h-16 bg-gradient-to-b from-red-600/40 via-red-500/10 to-orange-500/40" />
+
+                            {/* Punto Superior */}
                             <motion.div
                               animate={{
-                                opacity: [0.2, 0.5, 0.2],
-                                scaleY: [1, 0.5, 1],
+                                y: [-35, 35, -35],
+                                scale: [1, 0.7, 1],
+                                opacity: [1, 0.4, 1]
                               }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15 }}
-                              className="absolute w-[2px] h-20 bg-gradient-to-b from-red-500 to-orange-500"
+                              transition={{ duration: 4, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                              className="absolute w-2.5 h-2.5 rounded-full bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"
                             />
 
-                            {/* Strand 1 (Front/Back) */}
+                            {/* Punto Inferior */}
                             <motion.div
                               animate={{
-                                y: [-50, 50, -50],
-                                scale: [1.2, 0.6, 1.2],
-                                backgroundColor: ["#ef4444", "#f97316", "#ef4444"],
-                                zIndex: [10, 0, 10]
+                                y: [35, -35, 35],
+                                scale: [0.7, 1, 0.7],
+                                opacity: [0.4, 1, 0.4]
                               }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
-                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"
-                            />
-
-                            {/* Strand 2 (Inverted) */}
-                            <motion.div
-                              animate={{
-                                y: [50, -50, 50],
-                                scale: [0.6, 1.2, 0.6],
-                                backgroundColor: ["#7c3aed", "#ef4444", "#7c3aed"], // Mezcla con violeta para más contraste
-                                zIndex: [0, 10, 0]
-                              }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
-                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(124,58,237,0.6)]"
+                              transition={{ duration: 4, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                              className="absolute w-2.5 h-2.5 rounded-full bg-orange-500/80 shadow-[0_0_10px_rgba(249,115,22,0.3)]"
                             />
                           </div>
                         ))}
                       </div>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent" />
                 </div>
               </div>
             </motion.div>
