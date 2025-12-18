@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -38,7 +38,7 @@ export default function Projects() {
       title: "SoundPulse",
       version: "IN DEVELOPMENT",
       badgeColor: "text-gray-400 bg-white/5 border-white/10",
-      icon: null, 
+      icon: null,
       isSecret: true,
       description: "A powerful data visualization platform for Last.fm & ListenBrainz. Tracking listening habits in real-time with pixel-perfect precision.",
       tags: ['Next.js', 'Data Viz', 'Public API', 'Analytics'],
@@ -48,8 +48,8 @@ export default function Projects() {
         icon: <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>,
         active: false
       },
-      secondaryAction: null, 
-      visual: "voice-wave" // Updated ID for the new visual
+      secondaryAction: null,
+      visual: "data-grid" // CHANGED: New visual ID
     }
   ];
 
@@ -65,12 +65,12 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-neutral-950">
-      
+
       {/* Background Glow Effect - Red Theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
-        
+
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,13 +89,13 @@ export default function Projects() {
 
           {/* Slider Controls */}
           <div className="flex gap-2">
-            <button 
+            <button
               onClick={prevProject}
               className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group"
             >
               <svg className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
             </button>
-            <button 
+            <button
               onClick={nextProject}
               className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-red-600 hover:border-red-600 transition-colors text-white group"
             >
@@ -116,16 +116,16 @@ export default function Projects() {
               className="group relative bg-neutral-900/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl"
             >
               <div className="grid md:grid-cols-2 gap-8 p-6 md:p-12 items-center min-h-[500px]">
-                
+
                 {/* Left: Content */}
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
                     <div className="p-4 bg-black/60 rounded-2xl border border-white/10 shrink-0 flex items-center justify-center">
                       {currentProject.id === 'eq-boost' ? (
-                        <Image 
-                          src={currentProject.icon} 
-                          alt="Icon" 
-                          width={48} 
+                        <Image
+                          src={currentProject.icon}
+                          alt="Icon"
+                          width={48}
                           height={48}
                           className="w-12 h-12"
                         />
@@ -149,15 +149,15 @@ export default function Projects() {
                       <div className="space-y-4">
                         {/* LOCK ICON + BADGE STYLE */}
                         <div className="bg-red-950/30 border border-red-500/20 p-3 rounded-lg flex items-center gap-3 w-fit">
-                           <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                           <span className="font-mono text-xs text-red-400 font-bold tracking-widest uppercase select-none">
-                             IN ACTIVE DEVELOPMENT
-                           </span>
+                          <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                          <span className="font-mono text-xs text-red-400 font-bold tracking-widest uppercase select-none">
+                            IN ACTIVE DEVELOPMENT
+                          </span>
                         </div>
-                        
+
                         {/* BLUR EFFECT */}
                         <p className="text-gray-500 text-lg blur-[5px] select-none opacity-50 leading-relaxed">
-                           {currentProject.description}
+                          {currentProject.description}
                         </p>
                       </div>
                     ) : (
@@ -177,26 +177,26 @@ export default function Projects() {
 
                   <div className="flex gap-4 pt-2">
                     {currentProject.primaryAction.active ? (
-                       <a 
-                       href={currentProject.primaryAction.url}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95"
-                     >
-                       {currentProject.primaryAction.icon}
-                       {currentProject.primaryAction.label}
-                     </a>
+                      <a
+                        href={currentProject.primaryAction.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 flex items-center gap-2 text-sm uppercase tracking-wide cursor-pointer hover:scale-105 active:scale-95"
+                      >
+                        {currentProject.primaryAction.icon}
+                        {currentProject.primaryAction.label}
+                      </a>
                     ) : (
                       <div className="px-8 py-4 rounded-full font-bold text-gray-500 border border-white/5 bg-white/5 text-sm uppercase tracking-wide cursor-not-allowed flex items-center gap-2">
-                         {currentProject.primaryAction.icon}
-                         {currentProject.primaryAction.label}
+                        {currentProject.primaryAction.icon}
+                        {currentProject.primaryAction.label}
                       </div>
                     )}
-                   
+
                     {currentProject.secondaryAction && (
-                      <a 
-                        href={currentProject.secondaryAction.url} 
-                        target="_blank" 
+                      <a
+                        href={currentProject.secondaryAction.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="px-8 py-4 rounded-full font-bold text-gray-300 hover:text-white border border-white/10 hover:bg-white/5 transition-all text-sm uppercase tracking-wide flex items-center justify-center hover:scale-105 active:scale-95 text-center"
                       >
@@ -209,8 +209,8 @@ export default function Projects() {
                 {/* Right: Visual Showcase */}
                 <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-800/30 to-black/50 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
-                  
-                  {/* EQ VISUAL (Chrome EQ Boost) */}
+
+                  {/* EQ VISUAL (Vertical Bars) */}
                   {currentProject.visual === 'eq' && (
                     <div className="flex gap-3 items-end h-32 z-10">
                       {[40, 70, 50, 90, 60, 80, 45].map((h, i) => (
@@ -225,29 +225,22 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* SOUNDPULSE VISUAL (New Digital Voice Wave) */}
-                  {currentProject.visual === 'voice-wave' && (
-                    <div className="flex items-center justify-center gap-3 h-32 z-10">
-                      {/* 5 Symmetrical Bars: Short, Medium, Tall, Medium, Short */}
-                      {[1, 2, 3, 2, 1].map((scale, i) => (
+                  {/* DATA GRID VISUAL (SoundPulse) - New & Distinct */}
+                  {currentProject.visual === 'data-grid' && (
+                    <div className="grid grid-cols-6 gap-2 z-10 p-4">
+                      {/* Generates a 6x6 grid of 'pixels' that flicker like a server/data stream */}
+                      {Array.from({ length: 36 }).map((_, i) => (
                         <motion.div
                           key={i}
-                          initial={{ height: scale * 15 + "%" }}
-                          animate={{ 
-                            height: [
-                              scale * 15 + "%",     // Base height
-                              scale * 30 + "%",     // Peak height (x2)
-                              scale * 15 + "%"      // Back to base
-                            ],
-                            opacity: [0.6, 1, 0.6] 
+                          initial={{ opacity: 0.1 }}
+                          animate={{ opacity: [0.1, 0.8, 0.1] }}
+                          transition={{
+                            duration: Math.random() * 2 + 1.5, // Random duration for organic data feel
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                            ease: "easeInOut"
                           }}
-                          transition={{ 
-                            duration: 1.2, 
-                            repeat: Infinity, 
-                            ease: "easeInOut",
-                            delay: i * 0.15 // Stagger for wave effect
-                          }}
-                          className="w-3 md:w-4 bg-red-600 rounded-full shadow-[0_0_20px_rgba(220,38,38,0.6)]"
+                          className="w-3 h-3 bg-red-500 rounded-[1px] shadow-[0_0_8px_rgba(220,38,38,0.4)]"
                         />
                       ))}
                     </div>
@@ -267,9 +260,8 @@ export default function Projects() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                idx === currentIndex ? "w-8 bg-red-600" : "bg-white/20 hover:bg-white/40"
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-red-600" : "bg-white/20 hover:bg-white/40"
+                }`}
             />
           ))}
         </div>
