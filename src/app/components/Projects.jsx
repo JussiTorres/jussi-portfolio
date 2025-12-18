@@ -49,7 +49,7 @@ export default function Projects() {
         active: false
       },
       secondaryAction: null,
-      visual: "dna-helix" 
+      visual: "dna-helix"
     }
   ];
 
@@ -165,48 +165,66 @@ export default function Projects() {
                 <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
-                  {/* Refined EQ VISUAL: Centered and contained */}
+                  {/* EQ VISUAL: Más barras y cambio de color dinámico */}
                   {currentProject.visual === 'eq' && (
-                    <div className="flex gap-2 items-end h-32 z-10">
-                      {[40, 70, 50, 90, 60, 80, 45].map((baseH, i) => (
+                    <div className="flex gap-1.5 items-end h-40 z-10">
+                      {[...Array(15)].map((_, i) => (
                         <motion.div
                           key={i}
-                          animate={{ height: [`${baseH}%`, `${baseH + 20}%`, `${baseH - 10}%`, `${baseH}%`] }}
-                          transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.1, ease: "easeInOut" }}
-                          className="w-3 bg-gradient-to-t from-red-600 to-red-400 rounded-t-full shadow-[0_0_15px_rgba(239,68,68,0.5)]"
-                          style={{ height: `${baseH}%` }}
+                          animate={{
+                            height: [`${20 + Math.random() * 20}%`, `${60 + Math.random() * 40}%`, `${30 + Math.random() * 20}%`],
+                            backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"], // Ciclo: Rojo -> Naranja -> Violeta
+                          }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 1 + Math.random(),
+                            delay: i * 0.05,
+                            ease: "easeInOut"
+                          }}
+                          className="w-2 md:w-3 rounded-t-full shadow-[0_0_20px_rgba(239,68,68,0.4)]"
                         />
                       ))}
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Spinning effect with depth */}
+                  {/* DNA HELIX VISUAL: Extendida y con cambios cromáticos */}
                   {currentProject.visual === 'dna-helix' && (
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <div className="flex gap-4">
-                        {Array.from({ length: 8 }).map((_, i) => (
+                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                      <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
+                        {Array.from({ length: 14 }).map((_, i) => ( // Aumentado de 8 a 14 para que sea más larga
                           <div key={i} className="relative h-48 flex flex-col justify-center items-center">
+                            {/* Línea de conexión (Peldaño) */}
+                            <motion.div
+                              animate={{
+                                opacity: [0.2, 0.5, 0.2],
+                                scaleY: [1, 0.5, 1],
+                              }}
+                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15 }}
+                              className="absolute w-[2px] h-20 bg-gradient-to-b from-red-500 to-orange-500"
+                            />
+
                             {/* Strand 1 (Front/Back) */}
                             <motion.div
-                              animate={{ 
-                                y: [-40, 40, -40],
-                                scale: [1, 0.5, 1],
-                                opacity: [1, 0.4, 1],
+                              animate={{
+                                y: [-50, 50, -50],
+                                scale: [1.2, 0.6, 1.2],
+                                backgroundColor: ["#ef4444", "#f97316", "#ef4444"],
                                 zIndex: [10, 0, 10]
                               }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
-                              className="absolute w-3 h-3 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"
+                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
+                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"
                             />
+
                             {/* Strand 2 (Inverted) */}
                             <motion.div
-                              animate={{ 
-                                y: [40, -40, 40],
-                                scale: [0.5, 1, 0.5],
-                                opacity: [0.4, 1, 0.4],
+                              animate={{
+                                y: [50, -50, 50],
+                                scale: [0.6, 1.2, 0.6],
+                                backgroundColor: ["#7c3aed", "#ef4444", "#7c3aed"], // Mezcla con violeta para más contraste
                                 zIndex: [0, 10, 0]
                               }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
-                              className="absolute w-3 h-3 bg-red-700 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.6)]"
+                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
+                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(124,58,237,0.6)]"
                             />
                           </div>
                         ))}
