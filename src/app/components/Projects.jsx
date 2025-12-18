@@ -49,7 +49,7 @@ export default function Projects() {
         active: false
       },
       secondaryAction: null,
-      visual: "data-grid" // CHANGED: New visual ID
+      visual: "data-grid" 
     }
   ];
 
@@ -66,8 +66,8 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-neutral-950">
 
-      {/* Background Glow Effect - Red Theme */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] -z-10" />
+      {/* Background Glow Effect - Red Theme (Boosted) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/20 rounded-full blur-[200px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
 
@@ -206,43 +206,80 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right: Visual Showcase */}
-                <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-800/30 to-black/50 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
+                {/* Right: Visual Showcase (Polished Container) */}
+                <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-red-900/20 flex items-center justify-center overflow-hidden group-hover:border-red-600/40 transition-all duration-500">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
-                  {/* EQ VISUAL (Vertical Bars) */}
+                  {/* EQ VISUAL (Dynamic & Pumped) */}
                   {currentProject.visual === 'eq' && (
-                    <div className="flex gap-3 items-end h-32 z-10">
-                      {[40, 70, 50, 90, 60, 80, 45].map((h, i) => (
+                    <div className="flex gap-4 items-end h-64 z-10">
+                      {[65, 90, 45, 80, 60, 95, 40, 75, 55].map((baseH, i) => (
                         <motion.div
                           key={i}
-                          animate={{ height: [h + "%", (h - 20) + "%", h + "%"] }}
-                          transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.1 }}
-                          className="w-4 bg-gradient-to-t from-red-600 to-red-400 rounded-t-md opacity-90 shadow-[0_0_15px_rgba(220,38,38,0.5)]"
-                          style={{ height: `${h}%` }}
+                          animate={{
+                            height: [
+                              `${baseH}%`,
+                              `${baseH + 30}%`,
+                              `${baseH - 20}%`,
+                              `${baseH + 15}%`,
+                              `${baseH}%`
+                            ]
+                          }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 2 + i * 0.1,
+                            ease: "easeInOut",
+                            delay: i * 0.05
+                          }}
+                          className="w-8 bg-gradient-to-t from-red-700 via-red-500 to-red-400 rounded-t-full shadow-[0_0_30px_rgba(239,68,68,0.7)]"
+                          style={{ height: `${baseH}%` }}
                         />
                       ))}
                     </div>
                   )}
 
-                  {/* DATA GRID VISUAL (SoundPulse) - New & Distinct */}
+                  {/* DATA GRID VISUAL (SoundPulse - Traveling Sine Waves) */}
                   {currentProject.visual === 'data-grid' && (
-                    <div className="grid grid-cols-6 gap-2 z-10 p-4">
-                      {/* Generates a 6x6 grid of 'pixels' that flicker like a server/data stream */}
-                      {Array.from({ length: 36 }).map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0.1 }}
-                          animate={{ opacity: [0.1, 0.8, 0.1] }}
-                          transition={{
-                            duration: Math.random() * 2 + 1.5, // Random duration for organic data feel
-                            repeat: Infinity,
-                            delay: Math.random() * 2,
-                            ease: "easeInOut"
-                          }}
-                          className="w-3 h-3 bg-red-500 rounded-[1px] shadow-[0_0_8px_rgba(220,38,38,0.4)]"
-                        />
-                      ))}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      {/* Traveling sine wave made of glowing dots */}
+                      <div className="flex gap-3 items-center">
+                        {Array.from({ length: 15 }).map((_, i) => (
+                          <motion.div
+                            key={i}
+                            animate={{
+                              y: [0, -40, 0, 40, 0],
+                              opacity: [0.4, 1, 0.4, 1, 0.4],
+                              scale: [1, 1.4, 1]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              delay: i * 0.15,
+                              ease: "easeInOut"
+                            }}
+                            className="w-4 h-4 bg-red-500 rounded-full shadow-[0_0_20px_rgba(239,68,68,0.8)]"
+                          />
+                        ))}
+                      </div>
+                      {/* Secondary wave, inverted and delayed */}
+                      <div className="absolute flex gap-3 items-center">
+                        {Array.from({ length: 15 }).map((_, i) => (
+                          <motion.div
+                            key={i}
+                            animate={{
+                              y: [0, 40, 0, -40, 0],
+                              opacity: [0.3, 0.8, 0.3],
+                              scale: [0.8, 1.2, 0.8]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              delay: i * 0.15 + 0.75
+                            }}
+                            className="w-3 h-3 bg-red-600 rounded-full shadow-[0_0_15px_rgba(220,38,38,0.6)] blur-sm"
+                          />
+                        ))}
+                      </div>
                     </div>
                   )}
 
