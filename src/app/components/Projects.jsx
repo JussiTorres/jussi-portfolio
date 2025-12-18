@@ -165,45 +165,40 @@ export default function Projects() {
                 <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-900/80 to-black/60 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
-                  {/* EQ VISUAL: Más barras y cambio de color dinámico */}
+                  {/* EQ VISUAL: Independent bars, no sine wave, no jitter */}
                   {currentProject.visual === 'eq' && (
-                    <div className="flex gap-1.5 items-end h-40 z-10">
-                      {[...Array(15)].map((_, i) => (
+                    <div className="flex gap-2 items-end h-40 z-10">
+                      {[...Array(10)].map((_, i) => (
                         <motion.div
                           key={i}
                           animate={{
-                            height: [`${20 + Math.random() * 20}%`, `${60 + Math.random() * 40}%`, `${30 + Math.random() * 20}%`],
-                            backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"], // Ciclo: Rojo -> Naranja -> Violeta
+                            height: [
+                              `${20 + (i % 4) * 10}%`,
+                              `${70 + (i % 2) * 10}%`,
+                              `${40 + (i % 3) * 10}%`,
+                              `${20 + (i % 4) * 10}%`
+                            ],
+                            backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"],
                           }}
                           transition={{
                             repeat: Infinity,
-                            duration: 1 + Math.random(),
-                            delay: i * 0.05,
+                            duration: 1.2 + (i * 0.15), // Varied duration prevents the sine wave effect
                             ease: "easeInOut"
                           }}
-                          className="w-2 md:w-3 rounded-t-full shadow-[0_0_20px_rgba(239,68,68,0.4)]"
+                          className="w-3 rounded-full shadow-[0_0_20px_rgba(239,68,68,0.3)]"
                         />
                       ))}
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Extendida y con cambios cromáticos */}
+                  {/* DNA HELIX VISUAL: Dots only, RGB restored, 12 segments */}
                   {currentProject.visual === 'dna-helix' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                       <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
-                        {Array.from({ length: 14 }).map((_, i) => ( // Aumentado de 8 a 14 para que sea más larga
+                        {Array.from({ length: 12 }).map((_, i) => (
                           <div key={i} className="relative h-48 flex flex-col justify-center items-center">
-                            {/* Línea de conexión (Peldaño) */}
-                            <motion.div
-                              animate={{
-                                opacity: [0.2, 0.5, 0.2],
-                                scaleY: [1, 0.5, 1],
-                              }}
-                              transition={{ duration: 3, repeat: Infinity, delay: i * 0.15 }}
-                              className="absolute w-[2px] h-20 bg-gradient-to-b from-red-500 to-orange-500"
-                            />
 
-                            {/* Strand 1 (Front/Back) */}
+                            {/* Strand 1 */}
                             <motion.div
                               animate={{
                                 y: [-50, 50, -50],
@@ -215,12 +210,12 @@ export default function Projects() {
                               className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"
                             />
 
-                            {/* Strand 2 (Inverted) */}
+                            {/* Strand 2 */}
                             <motion.div
                               animate={{
                                 y: [50, -50, 50],
                                 scale: [0.6, 1.2, 0.6],
-                                backgroundColor: ["#7c3aed", "#ef4444", "#7c3aed"], // Mezcla con violeta para más contraste
+                                backgroundColor: ["#7c3aed", "#ef4444", "#7c3aed"],
                                 zIndex: [0, 10, 0]
                               }}
                               transition={{ duration: 3, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
