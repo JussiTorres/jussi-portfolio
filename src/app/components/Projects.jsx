@@ -197,34 +197,36 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* DNA HELIX VISUAL: Red vs Blue contrast, 12 segments */}
+                  {/* DNA HELIX VISUAL: Dots only, 12 segments, Both strands with full RGB cycle */}
                   {currentProject.visual === 'dna-helix' && (
                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                       <div className="flex gap-3 md:gap-5 scale-90 md:scale-110">
                         {Array.from({ length: 12 }).map((_, i) => (
                           <div key={i} className="relative h-48 flex flex-col justify-center items-center">
 
-                            {/* Strand 1: Pure Red */}
+                            {/* Strand 1: Full RGB Cycle */}
                             <motion.div
                               animate={{
                                 y: [-50, 50, -50],
                                 scale: [1.2, 0.6, 1.2],
+                                backgroundColor: ["#ef4444", "#f97316", "#7c3aed", "#ef4444"],
                                 zIndex: [10, 0, 10]
                               }}
                               transition={{
-                                duration: 4,
+                                duration: 4, // Un poco más lento como pediste para el EQ
                                 repeat: Infinity,
                                 delay: i * 0.15,
                                 ease: "easeInOut"
                               }}
-                              className="absolute w-3.5 h-3.5 rounded-full bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.6)]"
+                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.5)]"
                             />
 
-                            {/* Strand 2: Pure Blue (Offset) */}
+                            {/* Strand 2: Full RGB Cycle (Offset to match the dance) */}
                             <motion.div
                               animate={{
                                 y: [50, -50, 50],
                                 scale: [0.6, 1.2, 0.6],
+                                backgroundColor: ["#7c3aed", "#ef4444", "#f97316", "#7c3aed"],
                                 zIndex: [0, 10, 0]
                               }}
                               transition={{
@@ -233,7 +235,7 @@ export default function Projects() {
                                 delay: i * 0.15,
                                 ease: "easeInOut"
                               }}
-                              className="absolute w-3.5 h-3.5 rounded-full bg-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.6)]"
+                              className="absolute w-3.5 h-3.5 rounded-full shadow-[0_0_15px_rgba(124,58,237,0.4)]"
                             />
                           </div>
                         ))}
