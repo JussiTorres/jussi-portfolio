@@ -49,7 +49,7 @@ export default function Projects() {
         active: false
       },
       secondaryAction: null, 
-      visual: "sharp-pulse" // Nueva visualización agresiva
+      visual: "voice-wave" // Updated ID for the new visual
     }
   ];
 
@@ -210,7 +210,7 @@ export default function Projects() {
                 <div className="relative h-full min-h-[300px] md:min-h-full bg-gradient-to-br from-neutral-800/30 to-black/50 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
                   
-                  {/* VISUAL LOGIC */}
+                  {/* EQ VISUAL (Chrome EQ Boost) */}
                   {currentProject.visual === 'eq' && (
                     <div className="flex gap-3 items-end h-32 z-10">
                       {[40, 70, 50, 90, 60, 80, 45].map((h, i) => (
@@ -225,54 +225,31 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* SHARP DIGITAL PULSE ANIMATION (The "Arctic Monkeys" Style) */}
-                  {currentProject.visual === 'sharp-pulse' && (
-                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                       <svg className="w-[200%] h-full absolute" viewBox="0 0 1200 100" preserveAspectRatio="none">
-                          {/* SHARP PULSE PATH (Polyline style)
-                             Flat -> Sharp Up -> Sharp Down -> Flat -> Repeat
-                             Pattern length: 300 units
-                          */}
-                          <motion.path
-                            d="M0,50 L100,50 L115,10 L130,90 L145,50 L300,50 
-                               L400,50 L415,10 L430,90 L445,50 L600,50
-                               L700,50 L715,10 L730,90 L745,50 L900,50
-                               L1000,50 L1015,10 L1030,90 L1045,50 L1200,50"
-                            fill="none"
-                            stroke="#DC2626"
-                            strokeWidth="3"
-                            strokeLinecap="square" // Sharp edges
-                            strokeLinejoin="miter" // Sharp corners
-                            initial={{ x: 0 }}
-                            animate={{ x: -300 }} // Moves exactly one pattern length
-                            transition={{ 
-                              duration: 2, // Faster, more aggressive speed
-                              ease: "linear", 
-                              repeat: Infinity 
-                            }}
-                            style={{ filter: "drop-shadow(0 0 5px rgba(220, 38, 38, 0.8))" }}
-                          />
-                          
-                          {/* Ghost Line for Tech Effect */}
-                          <motion.path
-                            d="M0,50 L100,50 L115,10 L130,90 L145,50 L300,50 
-                               L400,50 L415,10 L430,90 L445,50 L600,50
-                               L700,50 L715,10 L730,90 L745,50 L900,50
-                               L1000,50 L1015,10 L1030,90 L1045,50 L1200,50"
-                            fill="none"
-                            stroke="#EF4444"
-                            strokeWidth="1"
-                            strokeOpacity="0.3"
-                            initial={{ x: 0 }}
-                            animate={{ x: -300 }}
-                            transition={{ 
-                              duration: 2, 
-                              ease: "linear", 
-                              repeat: Infinity,
-                              delay: 0.05 // Slight offset
-                            }}
-                          />
-                       </svg>
+                  {/* SOUNDPULSE VISUAL (New Digital Voice Wave) */}
+                  {currentProject.visual === 'voice-wave' && (
+                    <div className="flex items-center justify-center gap-3 h-32 z-10">
+                      {/* 5 Symmetrical Bars: Short, Medium, Tall, Medium, Short */}
+                      {[1, 2, 3, 2, 1].map((scale, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ height: scale * 15 + "%" }}
+                          animate={{ 
+                            height: [
+                              scale * 15 + "%",     // Base height
+                              scale * 30 + "%",     // Peak height (x2)
+                              scale * 15 + "%"      // Back to base
+                            ],
+                            opacity: [0.6, 1, 0.6] 
+                          }}
+                          transition={{ 
+                            duration: 1.2, 
+                            repeat: Infinity, 
+                            ease: "easeInOut",
+                            delay: i * 0.15 // Stagger for wave effect
+                          }}
+                          className="w-3 md:w-4 bg-red-600 rounded-full shadow-[0_0_20px_rgba(220,38,38,0.6)]"
+                        />
+                      ))}
                     </div>
                   )}
 
